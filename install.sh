@@ -7,6 +7,9 @@ set -x
 
 dotfiles_root=$(pwd)
 
-if [ ! -s ~/.zshrc ]; then
-  rm -rf ~/.zshrc && ln -s $dotfiles_root/.zshrc ~/.zshrc
+# delete existing `.zshrc` if it exists
+if [[ -n "${HOME}/.zshrc" ]]; then
+  rm -rf ~/.zshrc
 fi
+
+ln -s $dotfiles_root/.zshrc ~/.zshrc
