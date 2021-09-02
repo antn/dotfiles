@@ -7,10 +7,16 @@ alias r="bundle exec rails"
 alias ..="cd .."
 alias gco="git checkout "
 
-eval "$(rbenv init -)"
+if (( $+commands[rbenv] ))
+then
+  eval "$(rbenv init -)"
+fi
 
 current_ruby() {
-  echo $(rbenv version | head -n1 | awk '{print $1;}')
+  if (( $+commands[rbenv] ))
+  then
+    echo $(rbenv version | head -n1 | awk '{print $1;}')
+  fi
 }
 
 current_branch() {
