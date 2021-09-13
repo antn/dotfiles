@@ -6,6 +6,16 @@ alias gl="glog --graph"
 alias r="bundle exec rails"
 alias ..="cd .."
 alias gco="git checkout "
+alias mysql57="mysqlv mysql@5.7"
+alias mysql80="mysqlv mysql"
+
+mysqlv() {
+  brew services stop mysql
+  brew services stop mysql@5.7
+  brew unlink mysql mysql@5.7
+  brew link --force --overwrite $1
+  brew services start $1
+}
 
 if (( $+commands[rbenv] ))
 then
