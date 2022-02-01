@@ -15,14 +15,16 @@ fi
 current_ruby() {
   if (( $+commands[rbenv] ))
   then
-    echo $(rbenv version | head -n1 | awk '{print $1;}')
+    VERSION=$(rbenv version | head -n1 | awk '{print $1;}')
+    echo " %F{red}$VERSION%f"
   fi
 }
 
 current_branch() {
-  echo $(git symbolic-ref HEAD 2>/dev/null | awk -F/ {'print $NF'})
+  ref=$(git symbolic-ref HEAD 2>/dev/null) || return
+  echo " %F{cyan}${ref#refs/heads/}%f"
 }
 
 export TERM="xterm-256color"
 export CLICOLOR=1
-export PROMPT='%B%F{yellow}%~%f %F{cyan}$(current_branch)%f %F{red}$(current_ruby)%f %F{green}${prompt_char}%f%b '
+export PROMPT='%B%F{yellow}%~%f$(current_branch)$(current_ruby) %F{green}${prompt_char}%f%b '
