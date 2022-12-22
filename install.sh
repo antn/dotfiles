@@ -13,3 +13,10 @@ if [[ -n "${HOME}/.zshrc" ]]; then
 fi
 
 ln -s $dotfiles_root/.zshrc ~/.zshrc
+
+if ! grep -q "root.*/bin/zsh" /etc/passwd
+then
+  chsh -s /bin/zsh root
+fi
+
+script/install-vscode-extensions
