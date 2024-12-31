@@ -28,3 +28,6 @@ current_branch() {
 export TERM="xterm-256color"
 export CLICOLOR=1
 export PROMPT='%B%F{yellow}%~%f$(current_branch)$(current_ruby) %F{green}${prompt_char}%f%b '
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+

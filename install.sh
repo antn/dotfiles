@@ -14,9 +14,6 @@ fi
 
 ln -s $dotfiles_root/.zshrc ~/.zshrc
 
-if ! grep -q "root.*/bin/zsh" /etc/passwd
-then
-  chsh -s /bin/zsh root
-fi
+sudo chsh "$(id -un)" --shell "/usr/bin/zsh"
 
 script/install-vscode-extensions
